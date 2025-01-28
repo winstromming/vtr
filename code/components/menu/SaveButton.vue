@@ -188,7 +188,7 @@ const onExport = () => {
       italics: "https://winstromming.github.io/spell/Arial-Italic.ttf",
       bolditalics: "https://winstromming.github.io/spell/Arial-MediumItalic.ttf",
     },
-  }).download(`${character.details.name || "character"}.pdf`);
+  }).download(`Character-Sheet-${character.details.name.replace(/\s/g, "-")}.pdf`);
 }
 
 </script>
