@@ -56,53 +56,18 @@
 import { character } from "../../store/store";
 import { computed, watch } from "vue";
 
+const size = computed(() => {
+  let size = character.traits.Size.base ?? 0
+  if (character.traits.Size.modifier && character.traits.Size.modifier > 0) size = character.traits.Size.modifier
+  return size
+})
 
-const asWillpower = (num: number | null) => {
-  return `${num ?? 0}/${maxWillpower.value}`
-}
-const asVitae = (num: number | null) => {
-  return `${num ?? 0}/${maxVitae.value}`
-}
-const parse = (input: string) => {
-  const nums = input.split("/")[0].replace(/[^0-9]+/g, '').trim()
-  return nums === '' ? null : Number(nums)
-}
-
-const maxWillpower = computed(() => {
-  return character.attributes.mental.Resolve.dots + character.attributes.social.Composure.dots;
-});
-const maxVitae = computed(() => {
-  switch (character.traits.BloodPotency) {
-    case 1:
-      return 10;
-    case 2:
-      return 11;
-    case 3:
-      return 12;
-    case 4:
-      return 13;
-    case 5:
-      return 15;
-    case 6:
-      return 20;
-    case 7:
-      return 25;
-    case 8:
-      return 30;
-    case 9:
-      return 50;
-    case 10:
-      return 75;
-    default:
-      return 10;
-  }
+const vigor = computed(() => {
+  return character.disciplines.find(discipline => discipline.name.toLowerCase() === "vigor" || discipline.name.toLowerCase() === "vigour")?.dots ?? 0
 })
 
 watch(character, () => {
-  character.traits.Speed.base = character.attributes.physical.Strength.dots + character.attributes.physical.Dexterity.dots;
-});
-watch(character, () => {
-  character.traits.Speed.base = character.attributes.physical.Strength.dots + character.attributes.physical.Dexterity.dots;
+  character.traits.Speed.base = size.value + character.attributes.physical.Strength.dots + character.attributes.physical.Dexterity.dots + vigor.value;
 });
 watch(character, () => {
   character.traits.Defense.base = Math.min(character.attributes.physical.Dexterity.dots, character.attributes.mental.Wits.dots) + character.skills.physical.Athletics.dots
