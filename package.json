@@ -1,0 +1,69 @@
+{
+  "name": "vtr",
+  "version": "1.0.0",
+  "description": "Vampire Requiem Character Sheet",
+  "scripts": {
+    "build": "parcel build --dist-dir docs",
+    "watch": "parcel --dist-dir .parcel-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winstromming/vtr.git"
+  },
+  "licence": "CC-BY-1.0",
+  "bugs": {
+    "url": "https://github.com/winstromming/vtr/issues"
+  },
+  "homepage": "https://github.com/winstromming/vtr#readme",
+  "dependencies": {
+    "@babel/core": "^7.26.0",
+    "@parcel/transformer-vue": "^2.13.3",
+    "@types/pdfmake": "^0.2.11",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "@vue/tsconfig": "^0.7.0",
+    "eslint": "^9.18.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-vue": "^9.32.0",
+    "lodash": "^4.17.21",
+    "lucide-vue-next": "^0.474.0",
+    "naive-ui": "2.34.4",
+    "parcel": "^2.13.3",
+    "pdfjs-dist": "^3.11.174",
+    "pdfmake": "^0.2.18",
+    "prettier": "^3.4.2",
+    "vue": "^3.5.13"
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": false,
+    "printWidth": 300,
+    "singleAttributePerLine": false,
+    "embeddedLanguageFormatting": "off"
+  },
+  "targets": {
+    "default": {
+      "publicUrl": ".",
+      "includeNodeModules": true
+    }
+  },
+  "browserslist": [
+    "last 2 versions",
+    "not dead"
+  ],
+  "source": "code/index.html",
+  "devDependencies": {
+    "assert": "^2.1.0",
+    "browserify-zlib": "^0.2.0",
+    "buffer": "^6.0.3",
+    "console-browserify": "^1.2.0",
+    "events": "^3.3.0",
+    "https-browserify": "^1.0.0",
+    "process": "^0.11.10",
+    "stream-browserify": "^3.0.0",
+    "stream-http": "^3.2.0",
+    "url": "^0.11.4",
+    "util": "^0.12.5"
+  }
+}
