@@ -21,7 +21,7 @@
         </n-popover>
     </template>
     <n-space vertical size="small">
-      <n-flex :size="5" style="margin-bottom: 3px">
+      <n-space :size="5" style="margin-bottom: 3px">
         <n-tooltip trigger="hover" v-for="(amount, index) of character.health.aggravated"
           :disabled="character.health.lethal > 0 || index + 1 !== character.health.aggravated">
           <template #trigger>
@@ -54,7 +54,7 @@
         <n-button v-for="amount in remaining" disabled text>
           <n-icon size="20"><Square stroke-width="1.5" /></n-icon>
         </n-button>
-      </n-flex>
+      </n-space>
       <n-alert type="warning" v-if="summary">
         <n-text v-html="summary" />
       </n-alert>

@@ -3,22 +3,14 @@
     <n-dialog-provider>
       <n-config-provider :theme-overrides="overrides">
         <n-layout position="absolute" embedded>
-          <!-- <n-layout-header position="absolute" style="z-index: 10">
-            <n-button @click="save">Save</n-button>
-            <n-upload :show-file-list="false" accept=".pdf" :custom-request="imports">
-              <n-button size="small" type="warning" quaternary>
-                Import
-              </n-button>
-            </n-upload>
-          </n-layout-header> -->
           <n-layout-content position="absolute" embedded>
-            <n-flex justify="space-between" style="margin: 24px auto 0; padding: 0; max-width: 800px;">
+            <n-space justify="space-between" style="margin: 24px auto 0; padding: 0; max-width: 800px;">
               <n-space>
                 <LoadButton />
                 <SaveButton />
               </n-space>
               <ClearButton />
-            </n-flex>
+            </n-space>
             <div class="sheet">
               <n-space vertical size="large">
                 <Character />
