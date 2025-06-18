@@ -13,7 +13,7 @@
 <script setup lang="ts">
 
 import * as pdfjs from "pdfjs-dist";
-pdfjs.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+// pdfjs.GlobalWorkerOptions.workerSrc = '/assets/pdf.worker.js';
 
 import type { UploadCustomRequestOptions } from "naive-ui";
 import { FileUp } from "lucide-vue-next";
@@ -41,5 +41,4 @@ const onUpload = async ({ file }: UploadCustomRequestOptions) => {
   } finally {
   }
 }
-
 </script>

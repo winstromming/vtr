@@ -9,8 +9,8 @@
       </n-gi>
       <n-gi>
         <n-space vertical size="small">
-          <n-input placeholder="Mask" v-model:value="character.details.mask" />
-          <n-input placeholder="Dirge" v-model:value="character.details.dirge" />
+          <n-input placeholder="Mask/Virtue" v-model:value="character.details.mask" />
+          <n-input placeholder="Dirge/Vice" v-model:value="character.details.dirge" />
         </n-space>
       </n-gi>
       <n-gi>
@@ -26,8 +26,6 @@
 <script setup lang="ts">
 
 import { character } from "../../store/store";
-
 </script>
 
-<style>
-</style>
+<style></style>

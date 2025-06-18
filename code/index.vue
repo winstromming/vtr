@@ -48,12 +48,6 @@
 </template>
 
 <script setup lang="ts">
-import { jsPDF } from "jspdf";
-import PDFParser from "pdf2json";
-import extractTextFromPDF from "pdf-parser-client-side";
-
-const parser = new PDFParser();
-
 import { watch, toRaw, onBeforeMount } from "vue";
 import { assign, cloneDeep } from "lodash";
 
@@ -79,7 +73,7 @@ import SaveButton from "./components/menu/SaveButton.vue";
 import LoadButton from "./components/menu/LoadButton.vue";
 import ClearButton from "./components/menu/ClearButton.vue";
 
-const overrides: GlobalThemeOverrides = { 
+const overrides: GlobalThemeOverrides = {
   common: {
     fontWeightStrong: "600",
     primaryColor: "#d1a398",
@@ -89,48 +83,6 @@ const overrides: GlobalThemeOverrides = {
     border: "1px solid #ccc",
   }
 }
-const d = (n: number, t: number) => Array.from({ length: n }, () => "●").concat(Array.from({ length: t - n }, () => "○")).join("")
-  
-const save = () => {
-  const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
-  doc.text("Name: " + character.details.name + " is \n my name", 105, 10, { align: "center" });
-  doc.text("Virtue: " + character.details.mask, 105, 20, { align: "center" });
-  doc.text("Vice: " + character.details.dirge, 105, 30, { align: "center" });
-  doc.text("Concept: " + character.details.concept, 105, 40, { align: "center" });
-
-// doc.html(document.body, {
-//    callback: function (doc) {
-//      doc.save();
-//    },
-//    x: 0,
-//   y: 0,
-//   width: 400,
-//    windowWidth: 800,
-// });
-  doc.save(`${character.details.name || "character"}.pdf`);
-}
-
-parser.on("pdfParser_dataError", (errorData) => {
-  console.log('pdfdata', errorData)
-  console.error(errorData.parserError)
-});
-parser.on("pdfParser_dataReady", (pdfData) => {
-  console.log('pdfdata', pdfData)
-  console.log(parser.getRawTextContent())
-});
-
-const imports = async ({
-  file,
-  data,
-  onProgress,
-  onFinish,
-  onError,
-}: UploadCustomRequestOptions) => {
-  extractTextFromPDF(file.file as File, "clean").then((text) => {
-    console.log(text)
-  })
-}
-
 
 onBeforeMount(() => {
   const hasCharacter = JSON.parse(localStorage.getItem("vtr") ?? "null")
@@ -141,7 +93,6 @@ watch(character, () => {
   const raw = cloneDeep(toRaw(character))
   localStorage.setItem("vtr", JSON.stringify(raw));
 })
-
 </script>
 
 <style>
@@ -193,5 +144,4 @@ body {
   text-transform: uppercase;
   /* color: #9d4e3a !important; */
 }
-
 </style>

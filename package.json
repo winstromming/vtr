@@ -27,7 +27,7 @@
     "lodash": "^4.17.21",
     "lucide-vue-next": "^0.474.0",
     "naive-ui": "2.34.4",
-    "parcel": "^2.13.3",
+    "parcel": "^2.15.2",
     "pdfjs-dist": "^3.11.174",
     "pdfmake": "^0.2.18",
     "prettier": "^3.4.2",
