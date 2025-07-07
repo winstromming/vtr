@@ -48,7 +48,7 @@
 </template>
 
 <script setup lang="ts">
-import { watch, toRaw, onBeforeMount } from "vue";
+import { watch, toRaw, onBeforeMount, onMounted } from "vue";
 import { assign, cloneDeep } from "lodash";
 
 import { character } from "./store/store";
@@ -87,6 +87,22 @@ const overrides: GlobalThemeOverrides = {
 onBeforeMount(() => {
   const hasCharacter = JSON.parse(localStorage.getItem("vtr") ?? "null")
   if (hasCharacter) assign(character, hasCharacter)
+})
+
+  onMounted(() => {
+    if (window.location.pathname === "/json") {
+      const file = JSON.stringify(toRaw(character), null, 2)
+      const blob = new Blob([file], { type: "application/json" })
+      const anchor = document.createElement("a") as HTMLAnchorElement;
+      document.body.appendChild(anchor);
+      anchor.style.display = "none";
+      anchor.download = `${character.details.name || 'character'}.json`
+      anchor.href = window.URL.createObjectURL(blob);
+      anchor.dataset.downloadUrl = ["application/json", anchor.download, anchor.href].join(':');
+      anchor.click()
+      window.URL.revokeObjectURL(anchor.href);
+      document.body.removeChild(anchor);
+    }
 })
 
 watch(character, () => {
