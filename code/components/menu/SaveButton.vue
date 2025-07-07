@@ -41,7 +41,7 @@ const onExport = () => {
   const svgNone = '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-square"><rect width="18" height="18" x="3" y="3" rx="2"/></svg>';
 
   const healthRemaining = character.health.maximum.base - character.health.bashing - character.health.lethal - character.health.aggravated
-  
+
   const json = cloneDeep(toRaw(character))
 
   const def: TDocumentDefinitions = {
@@ -135,7 +135,7 @@ const onExport = () => {
               `Potency ${character.traits.BloodPotency}/10`,
               `Humanity ${character.traits.Humanity}/10`,
               { text: `Willpower ${character.traits.Willpower }/${character.attributes.mental.Resolve.dots + character.attributes.social.Composure.dots}` },
-              { text: `Vitae ${character.traits.Vitae}/${vitaeMax[character.traits.BloodPotency]}` },
+              { text: `Vitae ${character.traits.Vitae}/${character.traits.BloodPotency > 0 ? vitaeMax[character.traits.BloodPotency] : (0 + character.attributes.physical.Stamina.dots + (character.disciplines.find(discipline => discipline.name.toLowerCase() === "resilience")?.dots ?? 0))}` },
               { text: ' ' },
               { bold: true, color: brown, text: "Conditions" },
               { fontSize: 3, text: ' ' },
@@ -190,5 +190,4 @@ const onExport = () => {
     },
   }).download(`Character-Sheet-${character.details.name.replace(/\s/g, "-")}.pdf`);
 }
-
 </script>
